@@ -12,4 +12,4 @@ dependancies = ['flit','pandas']
 [project.urls]
 source="http://TODO."
 [project.scripts]
-dataframe_convert="dataframe_convert:main"
+dataframe_convert="pandas_dataframe_convert.dataframe_convert:main"
