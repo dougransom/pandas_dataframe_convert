@@ -12,6 +12,6 @@ dynamic = ["version", "description"]
 dependancies = ['flit','pandas']
 
 [project.urls]
-source="http://TODO."
+source="https://github.com/dougransom/pandas_dataframe_convert"
 [project.scripts]
 dataframe_convert="pandas_dataframe_convert.dataframe_convert:main"
