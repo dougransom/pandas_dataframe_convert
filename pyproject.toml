@@ -5,7 +5,9 @@ build-backend = "flit_core.buildapi"
 [project]
 name = "pandas_dataframe_convert"
 authors = [{name = "Doug Ransom", email = "doug@ransom.vip"}]
-classifiers = ["License :: OSI Approved :: MIT License"]
+classifiers = ["License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Topic :: Scientific/Engineering"]
 dynamic = ["version", "description"]
 dependancies = ['flit','pandas']
 
