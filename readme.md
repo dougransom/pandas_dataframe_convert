@@ -5,7 +5,7 @@ to generate a Pandas dataframe and you want to use the data in some other langua
 
 # Install
 
-pip install panvert
+pip install pandas_dataframe_convert
 
 # Usage
 
