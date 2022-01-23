@@ -1,9 +1,8 @@
-import argparse as ap
 import sys
 from pandas import DataFrame as DF
 import pandas as pd
 from  pathlib import PurePath
-
+import argparse as ap
 extensions=["pkl","ftr","json","xlsx","csv","md","latex","parquet"]
 extensions_save_function = ""
 
@@ -15,13 +14,14 @@ parser.add_argument(
     '-o',
     help=f"""pickle file containing a pandas dataframe.  defaults to standard out if not specified.  File extension 
     determined the output type.  choose an extension  of {extensions}.  Seperate multiple files with spaces."""
-    ,nargs='*',dest="ofiles")
-parser.add_argument('-x',help=f"specify type of output for standard output, one of {extensions}",nargs=1,dest="x")
+    ,nargs='*',dest="ofiles",default=[])
+parser.add_argument('-x',help=f"write to standard output.  Specify the type, one of {extensions}",dest="x")
 
 def eprint(*stuff,**kwstuff):
     print(file=sys.stderr,*stuff,**kwstuff)
 
 def main():
+    eprint("hi")
     a=parser.parse_args()
     eprint(a)
 
@@ -40,7 +40,7 @@ def main():
         suffix=(PurePath(ofile).suffix)[1:]  #remove the period from the suffix
         f_map[suffix](ofile)     #select the function and write to the file.  traceback if user specifies invalid extension
 
-    if len(a.ofiles) == 0:
+    if a.x:
         f_map[a.x](sys.stdout)              #select the file type for standard out.  traceback if invalid or not supplied
 
 

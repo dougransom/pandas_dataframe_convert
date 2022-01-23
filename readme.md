@@ -1,5 +1,5 @@
 # Overview
-Panvert is a command line tool to convert Pandas dataframes to other formats, including
+Pandas_dataframe_convert is a library with a command line tool to convert Pandas dataframes to other formats, including
 csv, excel, json, md, latex, feather and parquet.   Useful if you have or write  a tool 
 to generate a Pandas dataframe and you want to use the data in some other language.
 
