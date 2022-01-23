@@ -3,16 +3,17 @@ from pandas import DataFrame as DF
 import pandas as pd
 from  pathlib import PurePath
 import argparse as ap
+from pickle import loads,load
 extensions=["pkl","ftr","json","xlsx","csv","md","latex","parquet"]
 extensions_save_function = ""
 
 
 parser=ap.ArgumentParser(description=
 """Convert a Pandas dataframe in Pickle format to another format.  Mainly useful if you want to use the dataframe in another environment, like R or Julia""")
-parser.add_argument('-i',help="pickle file containing a pandas dataframe.  defaults to standard in if not specified",nargs=1,dest="infile")
+parser.add_argument('-i',help="pickle file containing a pandas dataframe.  ", required=True, dest="infile")
 parser.add_argument(
     '-o',
-    help=f"""pickle file containing a pandas dataframe.  defaults to standard out if not specified.  File extension 
+    help=f"""pickle file containing a pandas dataframe.  File extension 
     determined the output type.  choose an extension  of {extensions}.  Seperate multiple files with spaces."""
     ,nargs='*',dest="ofiles",default=[])
 parser.add_argument('-x',help=f"write to standard output.  Specify the type, one of {extensions}",dest="x")
@@ -25,9 +26,10 @@ def main():
     a=parser.parse_args()
     eprint(a)
 
-    to_read = a.infile[0] if a.infile else sys.stdin
-
-    df=pd.read_pickle(to_read)
+    if a.infile:
+        df = pd.read_pickle(a.infile) 
+    else:
+        df = load(sys.stdin.buffer)   #doesn't work so removed stdin options from argparser
 
     #create a map from file extension desired to a function to produce it
     writing_functions = [df.to_pickle,df.to_feather,df.to_json,df.to_excel,df.to_csv,df.to_markdown,df.to_latex,df.to_parquet]
